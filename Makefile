@@ -186,9 +186,9 @@ docs: cli-docs crds-docs
 
 DOCS_GEN := bin/gen-docs
 $(DOCS_GEN):
-	$(GO) build -o bin/gen-docs ./hack/struct-docs.go
+	cd hack && $(GO) build -o ../bin/gen-docs struct-docs.go
 
-	pushd /tmp; $(GO) get -u sigs.k8s.io/controller-tools/cmd/controller-gen@v0.4.0; popd
+	$(GO) install sigs.k8s.io/controller-tools/cmd/controller-gen@v0.21.0
 
 .PHONY: crds-docs
 crds-docs: $(DOCS_GEN)
